@@ -1,10 +1,10 @@
-package com.vestars.steam_data_gateaway;
+package com.vestars.steam_data_gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SteamDataGateawayApplicationTests {
+class SteamDataGatewayApplicationTests {
 
 	@Test
 	void contextLoads() {

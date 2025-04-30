@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.vestars</groupId>
-	<artifactId>steam-data-gateaway</artifactId>
+	<artifactId>steam-data-gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>steam-data-gateaway</name>
-	<description>Demo project for Spring Boot</description>
+	<name>steam-data-gateway</name>
+	<description>Steam Data Gateway</description>
 	<url/>
 	<licenses>
 		<license/>
