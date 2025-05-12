@@ -1,5 +1,7 @@
 package com.vestars.steam_data_gateway.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vestars.steam_data_gateway.dto.GameDto;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import java.util.List;
 public class GameController {
     private static final String QUEUE = "steam-game-queue";
     private static final String RETRIEVAL_SERVICE_URL = "http://localhost:8800/games";
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -22,9 +25,10 @@ public class GameController {
     private WebClient webClient;
 
     @PostMapping
-    public ResponseEntity<String> createGame(@RequestBody GameDto gameDto) {
-        rabbitTemplate.convertAndSend(QUEUE, gameDto);
-        return ResponseEntity.ok("Game sent to queue.");
+    public ResponseEntity<Void> createGame(@RequestBody GameDto gameDto) throws JsonProcessingException {
+        String gameDtoJson = this.objectMapper.writeValueAsString(gameDto);
+        rabbitTemplate.convertAndSend(QUEUE, gameDtoJson);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping
